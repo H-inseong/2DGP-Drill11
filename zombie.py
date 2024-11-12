@@ -52,14 +52,15 @@ class Zombie:
             Zombie.images['Walk'][int(self.frame)].composite_draw(0, 'h', self.x, self.y, self.size, self.size)
         else:
             Zombie.images['Walk'][int(self.frame)].draw(self.x, self.y, self.size, self.size)
+        draw_rectangle(*self.get_bb())
 
     def handle_event(self, group, other):
         if group == 'zombie:ball':
             if other.velocity != 0:
                 if self.size == 200:
-                    self.size /= 2
+                    self.size = 100
                 if self.size == 100:
                     game_world.remove_object(self)
 
-
-
+    def get_bb(self):
+        return self.x - self.size/3, self.y - self.size/2, self.x + self.size/3, self.y + self.size/2
