@@ -25,5 +25,6 @@ class Ball:
     def handle_collision(self, group, other):
         if group == 'boy:ball':
             game_world.remove_object(self)
-        elif group == 'zombie:ball' and self.velocity != 0:
+        elif group == 'zombie:ball':
+            game_world.remove_collision_object(self)
             game_world.remove_object(self)
